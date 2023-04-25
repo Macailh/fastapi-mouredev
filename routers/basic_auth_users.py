@@ -50,13 +50,13 @@ async def current_user(token: str = Depends(oauth2)):
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Credenciales de autenticación inválidas",
+            detail="Invalid credentials",
             headers={"WWW-Authenticate": "Bearer"})
 
     if user.is_disabled:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Usuario inactivo")
+            detail="Disabled user")
 
     return user
 
